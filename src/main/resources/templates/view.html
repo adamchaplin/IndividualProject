@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<title>Species Tracker</title>
+		<link rel="stylesheet" type="text/css" href="view.css">
+	</head>
+	<body>
+		<div class="loop" th:each="specie : ${species}">
+			<div class="card" >
+				<div id="image">
+			    	<img src="https://www.wwf.org.uk/sites/default/files/styles/hero_m/public/2017-05/Medium_WW226367.jpg?h=10d202d3&itok=aRoj9HUm">
+				</div>
+				<p class="SpeciesName" th:text="${specie.speciesName}"></p>
+				<p class="SciName" th:text="${specie.scientificName}"></p>
+				<p class="Population" th:text="'Population: ' + ${specie.population}"></p>
+				<p class="Population" th:text="'Location: ' + ${specie.location}"></p>
+				<p class="Population" th:text="'Conservation Status: ' + ${specie.conservationStatus}"></p>		
+			</div>
+		</div>
+	</body>
+</html>
