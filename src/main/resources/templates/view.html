@@ -7,7 +7,7 @@
 		<div class="loop" th:each="specie : ${species}">
 			<div class="card" >
 				<div id="image">
-			    	<img src="https://www.wwf.org.uk/sites/default/files/styles/hero_m/public/2017-05/Medium_WW226367.jpg?h=10d202d3&itok=aRoj9HUm">
+			    	<img th:src="${specie.imageUrl}">
 				</div>
 				<p class="SpeciesName" th:text="${specie.speciesName}"></p>
 				<p class="SciName" th:text="${specie.scientificName}"></p>

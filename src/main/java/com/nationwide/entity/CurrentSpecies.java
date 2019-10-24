@@ -19,6 +19,7 @@ public class CurrentSpecies {
 	private Integer population;
 	@Enumerated(EnumType.STRING)
 	private ConservationStatus conservationStatus;
+	private String imageUrl;
 	
 	public CurrentSpecies(){
 	}
@@ -69,6 +70,14 @@ public class CurrentSpecies {
 
 	public void setConservationStatus(ConservationStatus conservationStatus) {
 		this.conservationStatus = conservationStatus;
+	}
+	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 	
 }
