@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import com.nationwide.enums.ConservationStatus;
 
 @Entity
-public class CurrentSpecies {
+public class CurrentSpecies implements Comparable{
 	@Id
 	@GeneratedValue
 	private Integer speciesId;
@@ -78,6 +78,17 @@ public class CurrentSpecies {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		if (this.getPopulation() == null) {
+			return -1;
+		}
+		if (((CurrentSpecies) o).getPopulation() == null) {
+			return -1;
+		}
+		return this.getPopulation()-((CurrentSpecies) o).getPopulation();
 	}
 	
 }

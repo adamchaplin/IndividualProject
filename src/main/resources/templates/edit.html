@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title>Species Tracker</title>
-		<link rel="stylesheet" type="text/css" th:href="@{/css/view.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/edit.css}">
 		<script th:inline="javascript">
 
 		/*<![CDATA[*/
@@ -65,6 +65,7 @@
 					
 					
 					var card = document.createElement("div");
+					var close = document.createElement("a");
 					var image = document.createElement("div");
 					var imageUrl = document.createElement("img");
 					var speciesName = document.createElement("p");
@@ -75,6 +76,7 @@
 					
 					image.appendChild(imageUrl);
 					card.appendChild(image);
+					card.appendChild(close);
 					card.appendChild(speciesName);
 					card.appendChild(sciName);
 					card.appendChild(population);
@@ -85,6 +87,10 @@
 					
 					
 					card.classList.add("card");
+					close.classList.add("close");
+					close.onclick = function() { if (confirm('WARNING!\nYou are about to delete this item')) {
+					    //DELETE
+					}};
 					
 					image.classList.add("image");
 					imageUrl.src = species[i].imageUrl;
@@ -99,6 +105,22 @@
 					conserStatus.classList.add("Population");
 					conserStatus.innerHTML="Conservation Status: " + species[i].conservationStatus;		
 				}
+				
+				var card = document.createElement("div");
+				var add = document.createElement("div");
+				
+				card.appendChild(add);
+				cardList.appendChild(card);
+				
+				add.onclick = function() { if (confirm('WARNING!\nYou are about to add an item')) {
+				    //ADD
+				}};
+				
+				
+				card.classList.add("cardadd");
+				card.classList.add("card");
+				add.classList.add("add");
+				
 			}
 	        
        /*]]>*/

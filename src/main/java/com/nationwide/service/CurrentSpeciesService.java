@@ -1,6 +1,8 @@
 package com.nationwide.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +25,13 @@ public class CurrentSpeciesService {
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody ArrayList<CurrentSpecies> getCurrentSpecies() {
 		ArrayList<CurrentSpecies> currentSpecies = currentSpeciesRepo.findAll();
+		return currentSpecies;
+	}
+	
+
+	public @ResponseBody ArrayList<CurrentSpecies> getCurrentSpeciesOrdered() {
+		ArrayList<CurrentSpecies> currentSpecies = currentSpeciesRepo.findAll();
+		Collections.sort(currentSpecies);
 		return currentSpecies;
 	}
 	
