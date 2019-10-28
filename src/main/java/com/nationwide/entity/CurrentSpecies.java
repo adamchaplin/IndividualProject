@@ -12,14 +12,14 @@ import com.nationwide.enums.ConservationStatus;
 public class CurrentSpecies implements Comparable{
 	@Id
 	@GeneratedValue
-	private Integer speciesId;
-	private String speciesName;
-	private String scientificName;
-	private String location;
-	private Integer population;
+	public Integer speciesId;
+	public String speciesName;
+	public String scientificName;
+	public String location;
+	public Integer population;
 	@Enumerated(EnumType.STRING)
-	private ConservationStatus conservationStatus;
-	private String imageUrl;
+	public ConservationStatus conservationStatus;
+	public String imageUrl;
 	
 	public CurrentSpecies(){
 	}

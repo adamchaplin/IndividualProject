@@ -1,117 +1,24 @@
 <html>
 	<head>
 		<title>Species Tracker</title>
-		<link rel="stylesheet" type="text/css" th:href="@{/css/view.css}">
-		<script th:inline="javascript">
-
-		/*<![CDATA[*/
-			function sortCardsByPop(){
-				var species = /*[[${species}]]*/ 'species';
-				species.sort(comparePop);
-         
-				display(species);
-			}
-		
-			function sortCardsByName(){
-				var species = /*[[${species}]]*/ 'species';
-				species.sort(compareName);
-         
-				display(species);
-			} 
-			
-			function sortCardsBySciName(){
-				var species = /*[[${species}]]*/ 'species';
-				species.sort(compareSciName);
-         
-				display(species);
-			} 
-			
-			function compareName(a, b){
-				const valuea = a.speciesName;
-				const valueb = b.speciesName;
-				return compare(valuea, valueb);	
-			}
-			
-			function compareSciName(a, b){
-				const valuea = a.scientificName;
-				const valueb = b.scientificName;
-				return compare(valuea, valueb);	
-			}
-			
-			function comparePop(a, b){
-				const valuea = a.population;
-				const valueb = b.population;
-				return compare(valuea, valueb);		
-			}
-
-				
-			function compare(a, b){
-				let comparison = 0;
-				if (a > b) {
-					comparison = 1;
-				} else if (a < b) {
-					comparison = -1;
-				}
-				return comparison;
-			}
-        
-      
-			function display(species){
-				var cardList = document.getElementById('cardList');
-				while (cardList.firstChild) {
-					cardList.removeChild(cardList.firstChild);
-				}
-				for (var i = 0; i < species.length; i++) {
-					
-					
-					var card = document.createElement("div");
-					var image = document.createElement("div");
-					var imageUrl = document.createElement("img");
-					var speciesName = document.createElement("p");
-					var sciName = document.createElement("p");
-					var population = document.createElement("p");
-					var location = document.createElement("p");
-					var conserStatus = document.createElement("p");
-					
-					image.appendChild(imageUrl);
-					card.appendChild(image);
-					card.appendChild(speciesName);
-					card.appendChild(sciName);
-					card.appendChild(population);
-					card.appendChild(location);
-					card.appendChild(conserStatus);
-		
-					cardList.appendChild(card);
-					
-					
-					card.classList.add("card");
-					
-					image.classList.add("image");
-					imageUrl.src = species[i].imageUrl;
-					speciesName.classList.add("SpeciesName");
-					speciesName.innerHTML=species[i].speciesName;
-					sciName.classList.add("SciName");
-					sciName.innerHTML=species[i].scientificName;
-					population.classList.add("Population");
-					population.innerHTML="Population: " + species[i].population;
-					location.classList.add("Population");
-					location.innerHTML="Location: " + species[i].location;
-					conserStatus.classList.add("Population");
-					conserStatus.innerHTML="Conservation Status: " + species[i].conservationStatus;		
-				}
-			}
-	        
-       /*]]>*/
-</script> 
+		<link rel="stylesheet" type="text/css" href="/css/cardView.css">
+		<link rel="stylesheet" type="text/css" href="/css/view.css">
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="/js/sort.js"></script>
+		<script src="/js/view.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
-	<body onload="sortCardsByName()">
+	<body onload="sortCards('Name')">
 		<div id="cardList" class="cardList"></div>
+    	<a class="fa fa-home" href="/"></a>
 		<div class="orderDropdown">
 			<button class="orderButton">Sort by <i class="arrow down"></i></button>
 			<div class="dropdown-content">
-				<a onClick="sortCardsByName()">Species Name</a>
-				<a onClick="sortCardsBySciName()">Scientific Name</a>
-				<a onClick="sortCardsByPop()">Population</a>
+				<a onClick="sortCards('Name')">Species Name</a>
+				<a onClick="sortCards('SciName')">Scientific Name</a>
+				<a onClick="sortCards('Pop')">Population</a>
+				<a onClick="sortCards('Loc')">Location</a>
+				<a onClick="sortCards('CStatus')">Conservation Status</a>
 			</div>
 		</div>
 	</body>
