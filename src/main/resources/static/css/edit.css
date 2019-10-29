@@ -32,22 +32,23 @@
 	transition: transform 0.8s;
 	transform-style: preserve-3d;
 	transform: rotateY(-180deg);
+	min-height: 35vw;
 }
 
-.cardAddFront, .cardAddBack {
-	backface-visibility: hidden;
-}
-.cardAddFront {
+.flipCardInner {
 	display: -webkit-flexbox;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
     justify-content: center;
+}
 
-    -webkit-flex-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
+.cardAddFront, .cardAddBack {
+	backface-visibility: hidden;
+    position: absolute;
+}
+
+.cardAddFront {
 	transform: rotateY(-180deg);
 	
 }
@@ -99,4 +100,18 @@
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     text-align: center;
+}
+
+.submitButton { 
+    font-size: 5vw !important;
+    color: #555;
+}
+.submitButton:hover {
+	cursor: pointer;
+	color: #333;
+}
+
+.imageUrl {
+	height: 15vw;
+	font-size: 1.25vw;
 }

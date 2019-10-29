@@ -49,7 +49,12 @@ a {
 }
 
 .SciName {
+	font-size: 1.25vw;
 	color: #808080;
+}
+
+.cardText {
+	font-size: 1.25vw;
 }
 
 .image {

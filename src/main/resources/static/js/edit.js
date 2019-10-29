@@ -10,12 +10,12 @@ async function addCard(){
 	const url = 'http://localhost:8080/currentSpecies';
 	
 	params = {
-		speciesName: 'zinosaur',
-	    scientificName: 'Dinosaur',
-	    location: 'Everywhere',
-	    population: 0,
-	    conservationStatus: 'CR',
-	    image_url: ''
+		speciesName: document.getElementById('nameInput').value,
+	    scientificName: document.getElementById('sciInput').value,
+	    location: document.getElementById('locInput').value,
+	    population: document.getElementById('popInput').value,
+	    conservationStatus: document.getElementById('csInput').value,
+	    imageUrl: document.getElementById('urlInput').value
       }
 
     let res = await axios.post(url, params);
@@ -122,8 +122,8 @@ function display(species){
 				}
 			});
 		};
-		population.classList.add("Population");
-		popLabel.classList.add("Population");
+		population.classList.add("cardText");
+		popLabel.classList.add("cardText");
 		popLabel.innerText = "Population: ";
 		var popTextNode = document.createTextNode(species[i].population);
 		population.appendChild(popTextNode);
@@ -131,7 +131,7 @@ function display(species){
 		population.ondblclick = function() {
 			let input = document.createElement("input");
 			input.classList.add("input");
-			input.classList.add("Population");
+			input.classList.add("cardText");
 			input.type="text";
 			input.value = this.lastChild.nodeValue;
 			input.id = this.id;
@@ -149,7 +149,8 @@ function display(species){
 				}
 			});
 		};
-		location.classList.add("Population");
+		location.classList.add("cardText");
+		location.classList.add("cardText");
 		locLabel.innerText = "Location: ";
 		var locTextNode = document.createTextNode(species[i].location);
 		location.appendChild(locTextNode);
@@ -157,7 +158,7 @@ function display(species){
 		location.ondblclick = function() {
 			let input = document.createElement("input");
 			input.classList.add("input");
-			input.classList.add("Population");
+			input.classList.add("cardText");
 			input.type="text";
 			input.value = this.lastChild.nodeValue;
 			input.id = this.id;
@@ -175,14 +176,15 @@ function display(species){
 				}
 			});
 		};
-		conserStatus.classList.add("Population");
+		conserStatus.classList.add("cardText");
+		conserStatus.classList.add("cardText");
 		csLabel.innerText = "Conservation Status: ";
 		var csTextNode = document.createTextNode(species[i].conservationStatus);
 		conserStatus.appendChild(csTextNode);
 		conserStatus.ondblclick = function() {
 			let input = document.createElement("input");
 			input.classList.add("input");
-			input.classList.add("Population");
+			input.classList.add("cardText");
 			input.type="text";
 			input.value = this.lastChild.nodeValue;
 			input.id = this.id;
@@ -202,46 +204,65 @@ function display(species){
 		};
 	}
 	var flipCard = document.createElement("div");
+	var flipCardInner = document.createElement("div");
 	var cardFront = document.createElement("div");
 	var add = document.createElement("div");
 	var cardBack = document.createElement("div");
-	var image = document.createElement("div");
 	
+	let urlInput = document.createElement("textarea");
+	urlInput.classList.add("input");
+	urlInput.classList.add("imageUrl");
+	urlInput.id = "urlInput";
+	urlInput.placeholder="Image url";
 	let nameInput = document.createElement("input");
 	nameInput.classList.add("input");
 	nameInput.classList.add("SpeciesName");
+	nameInput.id = "nameInput";
 	nameInput.type="text";
 	nameInput.placeholder="Name";
 	let sciInput = document.createElement("input");
 	sciInput.classList.add("input");
 	sciInput.classList.add("SciName");
+	sciInput.id = "sciInput";
 	sciInput.type="text";
 	sciInput.placeholder="Scientific Name";
 	let popInput = document.createElement("input");
 	popInput.classList.add("input");
-	popInput.classList.add("Population");
+	popInput.classList.add("cardText");
+	popInput.id = "popInput";
 	popInput.type="text";
 	popInput.placeholder="Population";
 	let locInput = document.createElement("input");
 	locInput.classList.add("input");
-	locInput.classList.add("Population");
+	locInput.classList.add("cardText");
+	locInput.id = "locInput";
 	locInput.type="text";
 	locInput.placeholder="Location";
 	let csInput = document.createElement("input");
 	csInput.classList.add("input");
-	csInput.classList.add("Population");
+	csInput.classList.add("cardText");
+	csInput.id = "csInput";
 	csInput.type="text";
 	csInput.placeholder="Conservation Status";
+	let submit = document.createElement("div");
+	submit.classList.add("submitButton");
+	submit.classList.add("fa");
+	submit.classList.add("fa-cloud-upload");
+	submit.onclick = function() {
+		addCard();
+	}
 	
-	cardBack.appendChild(image);
+	cardBack.appendChild(urlInput);
 	cardBack.appendChild(nameInput);
 	cardBack.appendChild(sciInput);
 	cardBack.appendChild(popInput);
 	cardBack.appendChild(locInput);
 	cardBack.appendChild(csInput);
+	cardBack.appendChild(submit);
 	cardFront.appendChild(add);
-	flipCard.appendChild(cardFront);
-	flipCard.appendChild(cardBack);
+	flipCardInner.appendChild(cardFront);
+	flipCardInner.appendChild(cardBack);
+	flipCard.appendChild(flipCardInner);
 	cardList.appendChild(flipCard);
 	
 	add.onclick = function() {
@@ -250,6 +271,7 @@ function display(species){
 
 	flipCard.classList.add("card");
 	flipCard.classList.add("flipCard");
+	flipCardInner.classList.add("flipCardInner");
 	cardFront.classList.add("cardAddFront");
 	cardBack.classList.add("cardAddBack");
 	add.classList.add("add");
