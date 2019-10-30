@@ -1,5 +1,5 @@
 async function deleteCard(id){
-	const url = 'http://' + location.host + '/currentSpecies';
+	const url = 'http://' + location.host + ':9001/currentSpecies';
 	axios.delete(url, {data: { id: id }});
 	var cardList = document.getElementById('cardList');
 	var card = document.getElementById('card' + id);
@@ -7,7 +7,7 @@ async function deleteCard(id){
 }
 
 async function addCard(){
-	const url = 'http://' + location.host + '/currentSpecies';
+	const url = 'http://' + location.host + ':9001/currentSpecies';
 	
 	params = {
 		speciesName: document.getElementById('nameInput').value,
@@ -24,7 +24,7 @@ async function addCard(){
 }
 
 async function updateCard(id, params){
-	const url = 'http://' + location.host + '/currentSpecies/' + id;
+	const url = 'http://' + location.host + ':9001/currentSpecies/' + id;
 
     let res = await axios.put(url, params);
 	console.log(res);

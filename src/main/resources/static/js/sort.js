@@ -1,6 +1,6 @@
 async function sortCards(sort){
 			
-	const url = 'http://' + location.host + '/currentSpecies';
+	const url = 'http://' + location.host + ':9001/currentSpecies';
 	var species = await axios.get(url)
 	species = species.data;
 
