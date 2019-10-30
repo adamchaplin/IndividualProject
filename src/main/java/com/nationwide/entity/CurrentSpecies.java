@@ -1,5 +1,6 @@
 package com.nationwide.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -11,6 +12,7 @@ import com.nationwide.enums.ConservationStatus;
 @Entity
 public class CurrentSpecies implements Comparable{
 	@Id
+	@Column(name = "species_id", insertable = false, updatable = false)
 	@GeneratedValue
 	public Integer speciesId;
 	public String speciesName;
